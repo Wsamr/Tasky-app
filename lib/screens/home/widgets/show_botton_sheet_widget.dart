@@ -11,7 +11,11 @@ class ShowBottonSheetWidget extends StatelessWidget {
     this.flagOntap,
     this.sendOntap,
     this.timerOntap,
+    this.istimeSave = false,
+    this.priority = "1",
   });
+  final istimeSave;
+  final String priority;
   final void Function()? timerOntap;
   final void Function()? flagOntap;
   final void Function()? sendOntap;
@@ -53,12 +57,51 @@ class ShowBottonSheetWidget extends StatelessWidget {
             ),
           ),
           SizedBox(height: 15),
-
           TextFormFelidWidget(
             hintText: "Enter your Description",
             controller: description,
           ),
           SizedBox(height: 25),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Container(
+                padding: EdgeInsets.symmetric(
+                  horizontal: widthResponsive(context, 16),
+                  vertical: heightResponsive(context, 8),
+                ),
+                decoration: BoxDecoration(
+                  color: Color(0xffE0DFE3),
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                child: Text(
+                  "today",
+                  style: TextStyle(
+                    fontSize: widthResponsive(context, 12),
+                    fontWeight: FontWeight.w400,
+                    color: Color(0xff24252C),
+                  ),
+                ),
+              ),
+
+              SizedBox(width: widthResponsive(context, 10)),
+              Container(
+                padding: EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Color(0xff6E6A7C)),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Row(
+                  spacing: 10,
+                  children: [
+                    Image.asset(AssetsString.flagIcon),
+                    Text("$priority" ?? "1"),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: heightResponsive(context, 20)),
           Row(
             children: [
               GestureDetector(

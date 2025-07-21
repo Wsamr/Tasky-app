@@ -6,10 +6,10 @@ import 'package:tasky_app/core/utils/responsive.dart';
 import 'package:tasky_app/data/firebase/firebase_database.dart';
 import 'package:tasky_app/models/task_model.dart';
 import 'package:tasky_app/screens/auth/widgets/main_button_widget.dart';
-import 'package:tasky_app/screens/detailsScreen/widgets/calendar_dialog_widget.dart';
+import 'package:tasky_app/core/common/calendar_dialog_widget.dart';
 import 'package:tasky_app/screens/detailsScreen/widgets/edit_filelds_aler.dart';
 import 'package:tasky_app/screens/home/home_screen.dart';
-import 'package:tasky_app/screens/home/widgets/alert_dialog_widget.dart';
+import 'package:tasky_app/core/common/priorities_alert_dialog_widget.dart';
 import 'package:tasky_app/widgets/text_form_felid_widget.dart';
 
 class DetailsScreen extends StatefulWidget {
@@ -177,7 +177,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     showDialog(
                       context: context,
                       builder: (context) {
-                        return AlertDialogWidget(
+                        return PrioritiesAlertDialogWidget(
                           onTapPro: (p0) {
                             task.prority = p0;
                             taskPro = p0.toString();

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tasky_app/core/constants/assets_string.dart';
+import 'package:tasky_app/core/utils/responsive.dart';
 import 'package:tasky_app/models/task_model.dart';
 
 class TaskWidget extends StatelessWidget {
@@ -9,7 +10,7 @@ class TaskWidget extends StatelessWidget {
     this.isSelected = false,
     this.onTap,
     this.onChanged,
-    required this.groupName
+    required this.groupName,
   });
   void Function(bool? x)? onChanged;
   TaskModel task;
@@ -21,6 +22,7 @@ class TaskWidget extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
+        margin: EdgeInsets.only(bottom: heightResponsive(context, 16)),
         padding: EdgeInsets.all(16),
         decoration: BoxDecoration(
           border: Border.all(color: Color(0xff6E6A7C)),
@@ -37,6 +39,7 @@ class TaskWidget extends StatelessWidget {
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   task.taskTitle,

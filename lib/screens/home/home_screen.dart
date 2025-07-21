@@ -5,7 +5,8 @@ import 'package:tasky_app/core/utils/responsive.dart';
 import 'package:tasky_app/data/firebase/firebase_database.dart';
 import 'package:tasky_app/models/task_model.dart';
 import 'package:tasky_app/screens/detailsScreen/details_screen.dart';
-import 'package:tasky_app/screens/home/widgets/alert_dialog_widget.dart';
+import 'package:tasky_app/core/common/calendar_dialog_widget.dart';
+import 'package:tasky_app/core/common/priorities_alert_dialog_widget.dart';
 import 'package:tasky_app/screens/home/widgets/custom_app_widget.dart';
 import 'package:tasky_app/screens/home/widgets/home_screen_filled_widget.dart';
 import 'package:tasky_app/screens/home/widgets/empty_home_screen_widget.dart';
@@ -26,6 +27,8 @@ class _HomeScreenState extends State<HomeScreen> {
   var addTask = TextEditingController();
 
   var description = TextEditingController();
+  bool istimeSave = false;
+  bool isProiritySave = false;
 
   int priority = 0;
   String? dropdownValue = "Today";
@@ -108,6 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 onChanged: (x) {
                                   isSelected = x ?? false;
                                   setState(() {});
+                                  
                                   print(isSelected);
                                 },
                                 task: tasks[index],
@@ -133,16 +137,33 @@ class _HomeScreenState extends State<HomeScreen> {
               return ShowBottonSheetWidget(
                 taskTitle: addTask,
                 description: description,
+                istimeSave: istimeSave,
+                priority: priority.toString(),
                 flagOntap: () {
                   showDialog(
                     context: context,
                     builder: (context) {
-                      return AlertDialogWidget(
+                      return PrioritiesAlertDialogWidget(
                         onTapPro: (p0) {
                           priority = p0;
+                          setState(() {});
                           print(addTask.text);
                           print(description.text);
                           print(priority.toString());
+                        },
+                      );
+                    },
+                  );
+                },
+                timerOntap: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return CalendarDialogWidget(
+                        onSelectedDate: (p0) {
+                          dateTime = p0;
+                          istimeSave = true;
+                          setState(() {});
                         },
                       );
                     },
@@ -155,15 +176,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         date: dateTime,
                         prority: priority,
                         description: description.text,
-                        
-                      
                       )
-                      .then((_) {
+                      .then((_) async {
                         Navigator.of(context).pop();
                         addTask.clear();
                         description.clear();
                         priority = 1;
                         dateTime = DateTime.now();
+
                         Navigator.of(
                           context,
                         ).pushReplacementNamed(HomeScreen.routeName);

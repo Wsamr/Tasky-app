@@ -3,14 +3,17 @@ import 'package:tasky_app/core/utils/responsive.dart';
 import 'package:tasky_app/screens/auth/widgets/main_button_widget.dart';
 import 'package:tasky_app/screens/home/widgets/prority_container_widget.dart';
 
-class AlertDialogWidget extends StatefulWidget {
-  const AlertDialogWidget({super.key, required this.onTapPro});
+class PrioritiesAlertDialogWidget extends StatefulWidget {
+  const PrioritiesAlertDialogWidget({super.key, required this.onTapPro,this.onTapSave});
   final Function(int) onTapPro;
+  final Function()? onTapSave;
   @override
-  State<AlertDialogWidget> createState() => _AlertDialogWidgetState();
+  State<PrioritiesAlertDialogWidget> createState() =>
+      _PrioritiesAlertDialogWidgetState();
 }
 
-class _AlertDialogWidgetState extends State<AlertDialogWidget> {
+class _PrioritiesAlertDialogWidgetState
+    extends State<PrioritiesAlertDialogWidget> {
   List<int> priorities = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   int prority = 2;

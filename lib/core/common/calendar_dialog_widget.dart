@@ -17,21 +17,32 @@ class CalendarDialogWidget extends StatefulWidget {
 class _CalendarDialogWidgetState extends State<CalendarDialogWidget> {
   late DateTime focusedDay = DateTime.now();
   late DateTime selectedDay = DateTime.now();
+  String getMonthName(DateTime date) {
+    return monthNames[date.month - 1];
+  }
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   focusedDay = DateTime.now();
-  //   selectedDay = DateTime.now();
-  // }
+  List<String> monthNames = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Column(children: [Text("${focusedDay}"), Divider()]),
+      title: Column(children: [Text(getMonthName(focusedDay)), Divider()]),
       content: SizedBox(
         width: double.maxFinite,
-        height: heightResponsive(context, 500),
+
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -81,10 +92,12 @@ class _CalendarDialogWidgetState extends State<CalendarDialogWidget> {
                 if (selectedDay == null) return false;
                 return isSameDay(selectedDay, day);
               },
-              onPageChanged: (focusedDay) {
-                this.focusedDay = focusedDay;
+              onPageChanged: (newFocusedDay) {
+                setState(() {
+                  focusedDay = newFocusedDay;
+                });
               },
-
+              headerVisible: false,
               onDaySelected: (selectedDay, focusedDay) {
                 setState(() {
                   this.selectedDay = selectedDay;

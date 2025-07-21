@@ -68,4 +68,14 @@ abstract class FirebaseDatabase {
   static Future<void> deletTask(TaskModel task) async {
     return await collectionTask().doc(task.taskId).delete();
   }
+  // static CollectionReference<TaskModel> collectionTask() {
+  //   String userId = FirebaseAuth.instance.currentUser?.uid ?? "";
+  //   return collectionUser()
+  //       .doc(userId)
+  //       .collection("Tasks")
+  //       .withConverter<TaskModel>(
+  //         fromFirestore: (snapshot, _) => TaskModel.fromJson(snapshot.data()!),
+  //         toFirestore: (task, _) => task.toJson(),
+  //       );
+  // }
 }
