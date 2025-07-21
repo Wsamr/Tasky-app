@@ -1,0 +1,52 @@
+
+flutter_native_splash:
+  you install image 
+  color !=null || background_image==null
+  color: "#42a5f5"  
+  #background_image: "assets/background.png" 
+  you to specify an image used in the splash screen
+  must png file and should be sized for 4x pixel density
+  image: assets/splash.png
+  you to specify an image used as branding 
+  #branding: assets/dart.png //image under logo
+  To position the branding image at the bottom of the screen you can use bottom, bottomRight,
+  and bottomLeft
+  #branding_mode: bottom 
+   Set the branding padding from the bottom of the screen.  The default value is 0
+  # (Not supported on web yet)
+  # branding_bottom_padding: 24  
+  # color_dark and background_image_dark cannot both be set.
+  #color_dark: "#042a49"
+  #background_image_dark: "assets/dark-background.png"
+  #image_dark: assets/splash-invert.png
+  #branding_dark: assets/dart_dark.png
+  android_12:
+   * App icon with an icon background: This should be 960×960 pixels image , and fit within a circle
+    640 pixels in image frame 
+  * App icon without an icon background: This should be 1152×1152 pixels, and fit within a circle
+    768 pixels in diameter in image frame and put logo on this circle
+    ensure that the most important design elements of your image are placed within a circular area
+    # with a 768 diameter at the center of the 1152x1152 canvas.
+
+    Logo image (appears in a circle in the center of the screen)
+    image: assets/android12splash.png
+
+    # Splash screen background color.
+    #color: "#42a5f5"
+    
+    # App icon background color.
+    #icon_background_color: "#111111"
+
+    # The branding property allows you to specify an image used as branding in the splash screen.
+    #branding: assets/dart.png
+
+    # The image_dark, color_dark, icon_background_color_dark, and branding_dark set values that
+    # apply when the device is in dark mode. If they are not specified, the app will use the
+    # parameters from above.  If there is no parameter above, the app will use the light mode values.
+    #image_dark: assets/android12splash-invert.png
+    #color_dark: "#042a49"
+    #icon_background_color_dark: "#eeeeee"
+
+
+To apply the changes, run:
+  dart run flutter_native_splash:create

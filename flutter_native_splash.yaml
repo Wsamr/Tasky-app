@@ -1,0 +1,8 @@
+flutter_native_splash:
+  color: "#5F33E1"
+  image: "assets/images/logo_image_android11.png"
+
+  android_12:
+    image: assets/images/logo-android-12.png
+    color: "#5F33E1" # ← دي الخلفية الحقيقية للشاشة
+

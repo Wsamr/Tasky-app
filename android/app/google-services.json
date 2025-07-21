@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "840373899081",
+    "project_id": "tasky-app-64eaa",
+    "storage_bucket": "tasky-app-64eaa.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:840373899081:android:4c33cfd37e699154e99498",
+        "android_client_info": {
+          "package_name": "com.example.tasky_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "840373899081-38046hahpe15r7fo54jgep60gqapahar.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFS7RjMGJhkIh2APFsmxV3zAT2TQmE9u0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "840373899081-38046hahpe15r7fo54jgep60gqapahar.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "840373899081-02ipbta18n81dc2s0gn2do8s7qlb7neh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.taskyApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
