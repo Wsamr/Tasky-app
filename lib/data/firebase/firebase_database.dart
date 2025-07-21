@@ -68,14 +68,40 @@ abstract class FirebaseDatabase {
   static Future<void> deletTask(TaskModel task) async {
     return await collectionTask().doc(task.taskId).delete();
   }
-  // static CollectionReference<TaskModel> collectionTask() {
-  //   String userId = FirebaseAuth.instance.currentUser?.uid ?? "";
-  //   return collectionUser()
-  //       .doc(userId)
-  //       .collection("Tasks")
-  //       .withConverter<TaskModel>(
-  //         fromFirestore: (snapshot, _) => TaskModel.fromJson(snapshot.data()!),
-  //         toFirestore: (task, _) => task.toJson(),
-  //       );
-  // }
+
+  static CollectionReference<TaskModel> collectionCompeletedTask() {
+    String userId = FirebaseAuth.instance.currentUser?.uid ?? "";
+    return collectionUser()
+        .doc(userId)
+        .collection("ComeletedTasks")
+        .withConverter<TaskModel>(
+          fromFirestore: (snapshot, _) => TaskModel.fromJson(snapshot.data()!),
+          toFirestore: (task, _) => task.toJson(),
+        );
+  }
+
+  static Future<List<TaskModel>> getAllCompletedTasks() async {
+    var taskList = await collectionCompeletedTask().get();
+    return taskList.docs.map((task) {
+      return task.data();
+    }).toList();
+  }
+  static Future<void> addCompeletedTask({
+    required String taskTitle,
+    required DateTime date,
+    required int prority,
+    required String description,
+  }) async {
+    var refs = await collectionCompeletedTask().doc();
+    String taskId = refs.id;
+    TaskModel userTask = TaskModel(
+      taskId: taskId,
+      taskTitle: taskTitle,
+      date: date,
+      prority: prority,
+      description: description,
+    );
+    refs.set(userTask);
+  }
+  
 }

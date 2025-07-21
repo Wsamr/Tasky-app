@@ -16,10 +16,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AppSharedPref.initSharedPref();
   String routeName = SplashScreen.routeName;
-  // AppSharedPref.removeData("Id");
+  AppSharedPref.removeData("Id");
   AppSharedPref.getData("Id").then((value) {
     if (value != null) routeName = HomeScreen.routeName;
-    
   });
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);

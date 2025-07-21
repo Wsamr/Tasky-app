@@ -238,7 +238,6 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 ],
               ),
             ),
-
             Spacer(),
             MainBottonWidget(
               title: "Edit Task",

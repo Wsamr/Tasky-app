@@ -28,12 +28,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
   var description = TextEditingController();
   bool istimeSave = false;
-  bool isProiritySave = false;
+  bool isSel = false;
 
   int priority = 0;
   String? dropdownValue = "Today";
   bool isSelected = false;
   List<TaskModel> tasks = [];
+  List<TaskModel> compeleteTasks = [];
 
   DateTime dateTime = DateTime.now();
 
@@ -107,11 +108,24 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: ListView.builder(
                           itemBuilder:
                               (context, index) => TaskWidget(
-                                groupName: isSelected,
-                                onChanged: (x) {
-                                  isSelected = x ?? false;
+                                groupName: tasks[index].isCompeleted,
+                                onChanged: (x) async {
+                                  tasks[index].isCompeleted = x ?? false;
+                                  if (tasks[index].isCompeleted == true)
+                                    compeleteTasks.add(tasks[index]);
+                                  await FirebaseDatabase.addCompeletedTask(
+                                    taskTitle: tasks[index].taskTitle,
+                                    date: tasks[index].date,
+                                    prority: tasks[index].prority,
+                                    description: tasks[index].description,
+                                  );
+                                  await FirebaseDatabase.deletTask(
+                                    tasks[index],
+                                  );
+                                  tasks.removeAt(index);
+
                                   setState(() {});
-                                  
+
                                   print(isSelected);
                                 },
                                 task: tasks[index],
@@ -125,6 +139,35 @@ class _HomeScreenState extends State<HomeScreen> {
                           itemCount: tasks.length,
                         ),
                       ),
+                      Container(
+                        padding: EdgeInsets.all(8),
+                        margin: EdgeInsets.only(bottom: 8),
+                        child: Text("Compeleted"),
+
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      // Expanded(
+                      //   child: ListView.builder(
+                      //     itemBuilder:
+                      //         (context, index) => TaskWidget(
+                      //           groupName: compeleteTasks[index].isCompeleted,
+                      //           onChanged: (x) async {
+                      //             print(isSelected);
+                      //           },
+                      //           task: compeleteTasks[index],
+                      //           onTap: () {
+                      //             Navigator.of(context).pushNamed(
+                      //               DetailsScreen.routeName,
+                      //               arguments: tasks[index],
+                      //             );
+                      //           },
+                      //         ),
+                      //     itemCount: tasks.length,
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),
