@@ -4,6 +4,10 @@ A modern and minimal to-do application built using Flutter. Tasky allows users t
 
 ## 🎥 Demo Video
 
+
+https://github.com/user-attachments/assets/19795f99-f7e2-4508-b4f0-b10232b644c9
+
+
 ## 📱 Features
 
 - 👋 Onboarding screens using `PageView`
